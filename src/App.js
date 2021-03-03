@@ -33,12 +33,12 @@ class App extends React.Component {
               ...snapshot.data()
             }
           })
-          console.log(this.state);
+          // console.log(this.state);
         })
         // console.log(this.state);
       }
       else{
-        console.log("No authorised user");
+        // console.log("No authorised user");
         this.setState({currentUser:userAuth});//here userAuth comes in else loop so always null,we set it and let the app know here tho.
       }
     })
