@@ -22,18 +22,24 @@ class ShopePage extends React.Component{
     componentDidMount(){
         const {updateCollections}=this.props;
         const collectionRef=firestore.collection('collections');
-         
+         //observable observer pattern
         // this.unsubscribeFromSnapshot=collectionRef.onSnapshot(async snapshot =>{
         //     const collectionsMap=convertCollectionsSnapshotToMap(snapshot);
         //     updateCollections(collectionsMap);   
         //     this.setState({loading:false})     
         // })
-        //same functionality,different pattern
+
+        //same functionality,different pattern(promise)
         collectionRef.get().then(snapshot =>{
                 const collectionsMap=convertCollectionsSnapshotToMap(snapshot);
                 updateCollections(collectionsMap);   
                 this.setState({loading:false})     
             })
+
+        //native fetch 
+        // fetch('https://firestore.googleapis.com/v1/projects/e-commerce-site-db/databases/(default)/documents/collections')
+        // .then(response=>response.json())
+        // .then(collections=>console.log(collections))//extremely nested so not actually implemented but method understood
     }
 
     render(){
